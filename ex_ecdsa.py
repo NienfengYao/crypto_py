@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
 """
 Reference:
     How to Sign and Verify Digital Signature With Ecdsa?

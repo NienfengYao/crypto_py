@@ -1,20 +1,39 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+"""
+Reference:
+    PyCryptodome: AES
+        https://pycryptodome.readthedocs.io/en/latest/src/cipher/aes.html
+        https://officeguide.cc/python-pycryptodome-aes-symmetric-encryption-tutorial-examples/
+"""
+
+
 from Crypto.Cipher import AES
 
 
-def ex_aes_tmp():
+def ex_aes():
+    print("\n%s()" % ex_aes.__name__)
     key = b'Sixteen byte key'
     data = b'My secret data.'
     cipher = AES.new(key, AES.MODE_EAX)
     nonce = cipher.nonce
-    print("nonce: ", nonce)
+    # encryption
+    print("\tnonce: ", nonce.hex())
     ciphertext, tag = cipher.encrypt_and_digest(data)
-    print("ciphertext: ", ciphertext)
-    print("tag: ", tag)
+    print("\tciphertext: ", ciphertext.hex())
+    print("\ttag: ", tag.hex())
+    # decryption
+    cipher = AES.new(key, AES.MODE_EAX, nonce=nonce)
+    plaintext = cipher.decrypt(ciphertext)
+    try:
+        cipher.verify(tag)
+        print("\tThe message is authentic:", plaintext)
+    except ValueError:
+        print("\tKey incorrect or message corrupted")
 
 
 def ex_aes_cbc():
+    print("\n%s()" % ex_aes_cbc.__name__)
     key = bytes([
         0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c])
     ptx = bytes([     # plaintext
@@ -35,16 +54,16 @@ def ex_aes_cbc():
 
     # Encrypt data
     data = cipher.encrypt(ptx)
-    print("ciphertext:\n  ", data.hex())
+    print("\tciphertext: ", data.hex())
 
     # Decrytp data
     cipher = AES.new(key, AES.MODE_CBC, iv=iv)
     data = cipher.decrypt(ctx)
-    print("plaintext:\n  ", data.hex())
+    print("\tplaintext: ", data.hex())
     
 
 
 if __name__ == '__main__':
-    # ex_aes_tmp()
+    ex_aes()
     ex_aes_cbc()
 
