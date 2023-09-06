@@ -1,5 +1,5 @@
 # crypto_py
-Study how to test cryptography using python
+Study how to use cryptographic algorithms with Python
 
 * Reference
   * ex_ecdsa.py
