@@ -5,6 +5,9 @@ Reference:
     PyCryptodome: AES
         https://pycryptodome.readthedocs.io/en/latest/src/cipher/aes.html
         https://officeguide.cc/python-pycryptodome-aes-symmetric-encryption-tutorial-examples/
+    Cryptography: Key wrapping
+        https://cryptography.io/en/latest/hazmat/primitives/keywrap/#cryptography.hazmat.primitives.keywrap.aes_key_wrap
+        pip install cryptography==35.0.0
 """
 
 
@@ -52,8 +55,33 @@ def ex_aes_cbc():
     print("\tplaintext: ", data.hex())
     
 
+def ex_aes_keywrap():
+    from cryptography.hazmat.primitives.keywrap import aes_key_wrap, aes_key_unwrap
+    import os
+
+    print("\n%s()" % ex_aes_keywrap.__name__)
+    aes_key = os.urandom(16)  # Generate a random 128-bit AES key
+    # Randomly generate an AES key for wrapping and unwrapping
+    wrapping_key = os.urandom(32)  # Generate a random 256-bit AES key
+    # Wrap AES keys using the aes_key_wrap function
+    wrapped_aes_key = aes_key_wrap(wrapping_key, aes_key)
+    # Unwrap the AES key using the aes_key_unwrap function
+    unwrapped_aes_key = aes_key_unwrap(wrapping_key, wrapped_aes_key)
+    if aes_key == unwrapped_aes_key:
+        print("\tAES key wrapping and unwrapping successful!")
+    else:
+        print("\tAES key wrapping and unwrapping failed!")
+
+    KEK = unhexlify("000102030405060708090A0B0C0D0E0F")
+    CIPHER = unhexlify("1FA68B0A8112B447AEF34BD8FB5A7B829D3E862371D2CFE5")
+    PLAIN = unhexlify("00112233445566778899AABBCCDDEEFF")
+    assert aes_key_unwrap(KEK, CIPHER) == PLAIN
+    assert aes_key_wrap(KEK, PLAIN) == CIPHER
+    print("\tAES key wrapping and unwrapping successful!")
+
 
 if __name__ == '__main__':
     ex_aes()
     ex_aes_cbc()
+    ex_aes_keywrap()
 
