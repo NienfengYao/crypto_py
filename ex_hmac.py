@@ -5,14 +5,16 @@ from hashlib import sha1
 
 
 def hash_hmac(key, code, sha1):
+    print("\n%s()" % hash_hmac.__name__)
     hmac_code = hmac.new(key.encode(), code.encode(), sha1)
     # 947a316d9de36cd36268e459893335bd081fe57f
-    return hmac_code.hexdigest()
+    print("\tHMAC: ", hmac_code.hexdigest())
 
 
 def byte_hash_hmac():
+    print("\n%s()" % hash_hmac.__name__)
     key = bytes([0xaa]*80)
-    print("hash of key:", sha1(key).hexdigest())
+    print("\thash of key:", sha1(key).hexdigest())
     # print("key:", key)
     msg = bytes([
         0x54, 0x65, 0x73, 0x74, 0x20, 0x55, 0x73, 0x69, 0x6e, 0x67, 0x20, 0x4c,
@@ -23,15 +25,11 @@ def byte_hash_hmac():
         0x6f, 0x63, 0x6b, 0x2d, 0x53, 0x69, 0x7a, 0x65, 0x20, 0x44, 0x61, 0x74,
         0x61])
     hmac_code = hmac.new(key, msg, sha1)
-    return hmac_code.hexdigest()
+    print("\tHMAC: ", hmac_code.hexdigest())
     # e8e99d0f45237d786d6bbaa7965c7808bbff1a91
 
 
-def ex_hmac():
-    print(hash_hmac('qhn757Yhlmo8IgbusRLE2nUPb8TorbyA', 'test', sha1))
-    print(byte_hash_hmac())
-
-
 if __name__ == '__main__':
-    ex_hmac()
+    hash_hmac('qhn757Yhlmo8IgbusRLE2nUPb8TorbyA', 'test', sha1)
+    byte_hash_hmac()
 

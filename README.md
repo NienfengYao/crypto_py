@@ -27,3 +27,13 @@ Study how to use cryptographic algorithms with Python
   * [How to Sign and Verify Digital Signature With Ecdsa?](https://www.askpython.com/python/examples/sign-verify-signature-ecdsa)
   * [ecdsa 0.18.0](https://pypi.org/project/ecdsa/)
   * 配合 OpenSSL/RT-130 提供 ECDSA Sign/Verify 測試範例。
+* ex_cmac.py
+  * [PyCryptodome: CMAC](https://pycryptodome.readthedocs.io/en/latest/src/hash/cmac.html)
+  * AES-CMAC example.
+* ex_hmac.py
+  * [Python加密—HMACSHA1 加密](https://www.jianshu.com/p/74ceffac1275)
+  * HMAC example.
+* ex_sha.py
+  * [Python 計算 MD5 與 SHA 雜湊教學與範例](https://blog.gtwang.org/programming/python-md5-sha-hash-functions-tutorial-examples/)
+  * [hashlib --- 安全哈希与消息摘要](https://docs.python.org/zh-tw/3/library/hashlib.html)
+  * Hash example.

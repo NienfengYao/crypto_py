@@ -16,18 +16,20 @@ def ex_aes_cmac():
     mac = bytes([
         0x07, 0x0a, 0x16, 0xb4, 0x6b, 0x4d, 0x41, 0x44, 0xf7, 0x9b, 0xdd, 0x9d, 0xd0, 0x4a, 0x28, 0x7c])
 
+    print("\n%s()" % ex_aes_cmac.__name__)
     # Generate
     cmac = CMAC.new(key, ciphermod=AES)
     cmac.update(msg)
-    print("AES-CMAC Generate:\n  ", cmac.digest().hex())
+    print("\tAES-CMAC Generate:")
+    print("\t\t", cmac.digest().hex())
 
     # Verify
     try:
-        print("AES-CMAC Verify:")
+        print("\tAES-CMAC Verify:")
         cmac.verify(mac)
-        print("  The message '%s' is authentic" % msg.hex())
+        print("\t\tThe message '%s' is authentic" % msg.hex())
     except ValueError:
-        print("  The message or the key is wrong")
+        print("\t\tThe message or the key is wrong")
 
 
 def ex_aes_cbcmac():
@@ -39,30 +41,8 @@ def ex_aes_cbcmac():
     mac = bytes([
         0x5d, 0xc4, 0x3c, 0x22, 0x64, 0x38, 0xc6, 0x94, 0x7c, 0x69, 0xaa, 0x8c, 0xad, 0x08, 0x26, 0x1c])
 
-    # Don't know how to test AES-CBCMAC
-    """
-    # Encrypt data using AES-CBC
-    cipher = AES.new(key, AES.MODE_CBC)
-    # ciphertext = cipher.encrypt(msg)
-    # ciphertext = cipher.encrypt(pad(msg, AES.block_size))
-
-    # Generate
-    # print("key: ", key.hex())
-    # key = AES.new(key, AES.MODE_CBC).encrypt(b"\x00" * 16)
-    # key = AES.new(key, AES.MODE_CBC)
-    # print("key: ", key.hex())
-    cmac = CMAC.new(key, ciphermod=AES)
-    cmac.update(ciphertext)
-    print("AES-CMAC Generate:\n  ", cmac.digest().hex())
-
-    # Verify
-    try:
-        print("AES-CMAC Verify:")
-        cmac.verify(mac)
-        print("  The message '%s' is authentic" % msg.hex())
-    except ValueError:
-        print("  The message or the key is wrong")
-    """
+    print("\n%s()" % ex_aes_cbcmac.__name__)
+    print("\t\tToDo: Implement AES_CBCMAC example")
 
 
 def ex_cmac():

@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+import sys
+import hashlib
 
 
 def ex_sha1():
-    import hashlib
-    
+    print("\n%s()" % ex_sha1.__name__)
     " SHA1"
     s = hashlib.sha1()
     '''
@@ -13,7 +14,7 @@ def ex_sha1():
     '''
     data = ""
     s.update(data.encode("utf-8"))
-    print("sha1: ", s.hexdigest())
+    print("\tsha1: ", s.hexdigest())
 
     " SHA224 Single"
     data = bytes([0x50, 0xef, 0xd0])
@@ -24,7 +25,7 @@ def ex_sha1():
     0x8e, 0x9c, 0xce, 0xde
     '''
     s.update(data)
-    print("sha224-single: ", s.hexdigest())
+    print("\tsha224-single: ", s.hexdigest())
 
     
     " SHA224 Multipart"
@@ -32,15 +33,9 @@ def ex_sha1():
     s = hashlib.sha224()
     s.update(bytes([0x50]))
     s.update(bytes([0xef, 0xd0]))
-    print("sha224-multi: ", s.hexdigest())
-
-
-def main():
-    import sys
-    print(sys.version)
-
-    ex_sha1()
+    print("\tsha224-multi: ", s.hexdigest())
 
 
 if __name__ == '__main__':
-    main()
+    print(sys.version)
+    ex_sha1()
