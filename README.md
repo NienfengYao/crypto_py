@@ -18,7 +18,7 @@ Study how to use cryptographic algorithms with Python
 * ex_aes.py
   * [PyCryptodome: AES](https://pycryptodome.readthedocs.io/en/latest/src/cipher/aes.html)
   * [Python 以 PyCryptodome 實作 AES 對稱式加密方法教學與範例](https://officeguide.cc/python-pycryptodome-aes-symmetric-encryption-tutorial-examples/)
-  * [Cryptography: Key wrapping}(https://cryptography.io/en/latest/hazmat/primitives/keywrap/#cryptography.hazmat.primitives.keywrap.aes_key_wrap)
+  * [Cryptography: Key wrapping](https://cryptography.io/en/latest/hazmat/primitives/keywrap/#cryptography.hazmat.primitives.keywrap.aes_key_wrap)
     * pip install cryptography==35.0.0
     * For RFC 3394: keywrap.aes_key_wrap()/keywrap.aes_key_unwrap()
     * For RFC 5649: aes_key_wrap_with_padding()/aes_key_unwrap_with_padding()
