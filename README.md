@@ -22,6 +22,8 @@ Study how to use cryptographic algorithms with Python
     * pip install cryptography==35.0.0
     * For [RFC 3394](https://datatracker.ietf.org/doc/html/rfc3394): keywrap.aes_key_wrap()/keywrap.aes_key_unwrap()
     * For [RFC 5649](https://www.rfc-editor.org/rfc/rfc5649): aes_key_wrap_with_padding()/aes_key_unwrap_with_padding()
+  * 提供 AES Encrypt/Decrypt, Wrap/Unwrap 測試範例。
 * ex_ecdsa.py
   * [How to Sign and Verify Digital Signature With Ecdsa?](https://www.askpython.com/python/examples/sign-verify-signature-ecdsa)
   * [ecdsa 0.18.0](https://pypi.org/project/ecdsa/)
+  * 配合 OpenSSL/RT-130 提供 ECDSA Sign/Verify 測試範例。
