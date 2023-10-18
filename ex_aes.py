@@ -20,6 +20,7 @@ import os
 from cryptography.hazmat.primitives.keywrap import aes_key_wrap, aes_key_unwrap
 # for RFC 5649
 from cryptography.hazmat.primitives.keywrap import aes_key_wrap_with_padding, aes_key_unwrap_with_padding 
+from Crypto.Util.Padding import pad, unpad
 
 
 def ex_aes():
@@ -60,6 +61,21 @@ def ex_aes_cbc():
     cipher = AES.new(key, AES.MODE_CBC, iv=iv)
     data = cipher.decrypt(ctx)
     print("\tplaintext:", data.hex())
+
+
+def ex_aes_cbc_padding():
+    print("\n%s()" % ex_aes_cbc_padding.__name__)
+    key= unhexlify("2b7e151628aed2a6abf7158809cf4f3c")
+    # plaintext
+    ptx = unhexlify("bee22e409f96e93d7e117393172aae2d8a571e03ac9c9eb76fac45af8e5130c81c46a35ce411e5fbc1191a0a52eff69f2445df4f9b17ad2b417be66c3710")
+    iv = unhexlify("000102030405060708090a0b0c0d0e0f")
+    # Create a cipher object with Key ,CBC_MODE and IV
+    cipher = AES.new(key, AES.MODE_CBC, iv=iv)
+    # padding
+    pad_ptx = pad(ptx, AES.block_size)
+    # Encrypt data
+    data = cipher.encrypt(pad_ptx)
+    print("\tciphertext:", data.hex())
     
 
 def ex_aes_keywrap_rfc3394():
@@ -125,5 +141,6 @@ def ex_aes_keywrap_rfc5649():
 if __name__ == '__main__':
     ex_aes()
     ex_aes_cbc()
+    ex_aes_cbc_padding()
     ex_aes_keywrap_rfc3394()
     ex_aes_keywrap_rfc5649()
