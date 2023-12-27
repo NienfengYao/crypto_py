@@ -13,6 +13,7 @@ Study how to use cryptographic algorithms with Python
     * 安全性：AES金鑰包裹和解包裹操作通常與其他安全性機制（如數字簽名）結合使用，以確保金鑰在傳輸過程中的完整性和機密性。
   * Padding
     * [AES加密与解密的padding问题](https://developer.aliyun.com/article/608799)
+    * [加密演算法要注意的那些毛 (二) - 填充模式](https://ithelp.ithome.com.tw/articles/10250386)
   * 總之，AES加密/解密是用於保護數據的機密性，而AES金鑰包裹/解包裹是用於保護和傳輸金鑰的機制。它們有不同的用途，但通常可以一起使用，以實現安全的數據傳輸和存儲。
 
 ---
