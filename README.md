@@ -40,3 +40,5 @@ Study how to use cryptographic algorithms with Python
   * [Python 計算 MD5 與 SHA 雜湊教學與範例](https://blog.gtwang.org/programming/python-md5-sha-hash-functions-tutorial-examples/)
   * [hashlib --- 安全哈希与消息摘要](https://docs.python.org/zh-tw/3/library/hashlib.html)
   * Hash example.
+* ex_rsa.py
+  * [使用 Python 來進行 RSA 加密與解密: PyCryptodome](https://coin028.com/python/python-rsa-encryption-decryption/)
