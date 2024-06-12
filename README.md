@@ -41,6 +41,7 @@ Study how to use cryptographic algorithms with Python
   * [hashlib --- 安全哈希与消息摘要](https://docs.python.org/zh-tw/3/library/hashlib.html)
   * Hash example.
 * ex_rsa.py
+  * [RSA 加密是什麼，其運作原理為何？](https://nordvpn.com/zh-tw/blog/rsa-jiami/)
   * [PyCryptodome: keyGenerate an RSA key](https://pycryptodome.readthedocs.io/en/latest/src/examples.html#generate-an-rsa-key)
   * 使用 PyCryptodome
     * [使用 Python 來進行 RSA 加密與解密: ](https://coin028.com/python/python-rsa-encryption-decryption/)
