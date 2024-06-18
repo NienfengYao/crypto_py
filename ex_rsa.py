@@ -10,7 +10,7 @@ from binascii import unhexlify, hexlify
 from hashlib import sha1, sha512
 from Crypto.Random import get_random_bytes
 from Crypto.Signature.pkcs1_15 import PKCS115_SigScheme
-from Crypto.Hash import SHA1
+from Crypto.Hash import SHA1, SHA256, SHA512
 
 
 def ex_rsa_pem():
@@ -180,6 +180,40 @@ def ex_rsa1024_construct_pkcs115_sha1_signature():
         print("Signature is invalid.")
 
 
+def ex_rsa_pkcs115_signature(modulus, hash_alg):
+    print("\n%s(%d, %s)" % (ex_rsa_pkcs115_signature.__name__, modulus, hash_alg.__name__))
+    keyPair = RSA.generate(bits=modulus)
+    print(keyPair.__str__)
+    print(f"Public key:  (n={hex(keyPair.n)}, e={hex(keyPair.e)})")
+    print(f"Private key: (n={hex(keyPair.n)}, d={hex(keyPair.d)})")
+
+    pubKey = keyPair.publickey()
+    # Sign the message using the PKCS#1 v1.5 signature scheme (RSASP1)
+    msg = unhexlify("616263")
+    hash_data = hash_alg.new(msg)
+    signer = PKCS115_SigScheme(keyPair)
+    signature = signer.sign(hash_data)
+    print("Signature:", hexlify(signature))
+
+    # Verify valid PKCS#1 v1.5 signature (RSAVP1)
+    verifier = PKCS115_SigScheme(pubKey)
+    try:
+        verifier.verify(hash_data, signature)
+        print("Pass: Signature is valid.")
+    except:
+        print("Fail: Signature is invalid.")
+
+    # Verify invalid PKCS#1 v1.5 signature (RSAVP1)
+    msg = b'A tampered message'
+    hash_data = hash_alg.new(msg)
+    verifier = PKCS115_SigScheme(pubKey)
+    try:
+        verifier.verify(hash_data, signature)
+        print("Fail: Signature is valid.")
+    except:
+        print("Pass: Signature is invalid.")
+
+
 def ex_rsa():
     ex_rsa_pem()
     ex_rsa_pkcs1_v15()
@@ -187,6 +221,9 @@ def ex_rsa():
     ex_rsa1024_generate_sha1_signature()
     ex_rsa1024_construct_sha1_signature()
     ex_rsa1024_construct_pkcs115_sha1_signature()
+    for modulus in [1024, 2048, 3072]:
+        for hash_alg in [SHA1, SHA256, SHA512]:
+            ex_rsa_pkcs115_signature(modulus, hash_alg)
 
 
 if __name__ == '__main__':
