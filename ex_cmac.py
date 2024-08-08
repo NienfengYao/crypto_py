@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from Crypto.Hash import CMAC
 from Crypto.Cipher import AES
-# from Crypto.Util.Padding import pad
+from Crypto.Util.Padding import pad
 # from binascii import hexlify, unhexlify
 
 
@@ -32,22 +32,46 @@ def ex_aes_cmac():
         print("\t\tThe message or the key is wrong")
 
 
-def ex_aes_cbcmac():
+def ex_aes_cbc_mac():
     # Miscellaneous AES CBC-MAC Test Vector #4
     key = bytes([ 
         0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef, 0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10])
     msg = bytes([
         0xda, 0x7a, 0x00, 0x01, 0xda, 0x7a, 0x00, 0x02, 0xda, 0x7a, 0x00, 0x03, 0xda, 0x7a, 0x00, 0x04])
-    mac = bytes([
+    expected_mac = bytes([
         0x5d, 0xc4, 0x3c, 0x22, 0x64, 0x38, 0xc6, 0x94, 0x7c, 0x69, 0xaa, 0x8c, 0xad, 0x08, 0x26, 0x1c])
 
-    print("\n%s()" % ex_aes_cbcmac.__name__)
-    print("\t\tToDo: Implement AES_CBCMAC example")
+    print("\n%s()" % ex_aes_cbc_mac.__name__)
+    # Generate
+    cipher = AES.new(key, AES.MODE_CBC, iv=bytes(16))  # IV is zero for CBC-MAC
+    # padded_msg = pad(msg, AES.block_size) 
+    padded_msg = msg # RT-130 doesn't add apdding if size=16, adjust here
+    """
+    print("\tiv=%s" % (bytes(16).hex()))
+    print("\tAES.block_size=%d" % AES.block_size)
+    print("\tmsg=%s" % msg.hex())
+    print("\tpadded_msg=%s" % padded_msg.hex())
+    """
+    encrypted_msg = cipher.encrypt(padded_msg)
+    mac = encrypted_msg[-AES.block_size:]  # CBC-MAC is the last block of ciphertext
+
+    print("\tAES-CBC-MAC Generate:")
+    print("\t\t", mac.hex())
+
+    # Verify
+    try:
+        print("\tAES-CBC-MAC Verify:")
+        if mac == expected_mac:
+            print("\t\tThe message '%s' is authentic" % msg.hex())
+        else:
+            print("\t\tThe message or the key is wrong")
+    except ValueError:
+        print("\t\tThe message or the key is wrong")
 
 
 def ex_cmac():
     ex_aes_cmac()
-    ex_aes_cbcmac()
+    ex_aes_cbc_mac()
 
 
 if __name__ == '__main__':
