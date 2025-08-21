@@ -15,7 +15,12 @@ Study how to use cryptographic algorithms with Python
     * [AES加密与解密的padding问题](https://developer.aliyun.com/article/608799)
     * [加密演算法要注意的那些毛 (二) - 填充模式](https://ithelp.ithome.com.tw/articles/10250386)
   * 總之，AES加密/解密是用於保護數據的機密性，而AES金鑰包裹/解包裹是用於保護和傳輸金鑰的機制。它們有不同的用途，但通常可以一起使用，以實現安全的數據傳輸和存儲。
-
+ 
+* AES-CMAC 基本觀念
+  * CMAC 是一種「基於分組密碼 (block cipher) 的訊息認證碼」，AES 被用作底層 block cipher。
+  * AES 的 block size 永遠是 128 bits (16 bytes)，不論 key 長度 128/192/256。
+  * CMAC 的輸出長度固定等於 block size。
+    * Ex: AES-CMAC-256, key size = 256 bits (32 bytes), 輸出 (tag/MAC) size = 128 bits (16 bytes)。也就是說 不管 key 長度是多少（AES-128, AES-192, AES-256），AES-CMAC 輸出的長度都固定是 16 bytes。
 ---
 # Reference
 * ex_aes.py
