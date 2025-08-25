@@ -1,9 +1,14 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-from Crypto.Hash import CMAC
-from Crypto.Cipher import AES
-from Crypto.Util.Padding import pad
-# from binascii import hexlify, unhexlify
+try:
+    from Crypto.Hash import CMAC
+    from Crypto.Cipher import AES
+    from Crypto.Util.Padding import pad
+except ModuleNotFoundError:
+    from Cryptodome.Hash import CMAC
+    from Cryptodome.Cipher import AES
+    from Cryptodome.Util.Padding import pad
+    # from binascii import hexlify, unhexlify
 
 
 def ex_aes_cmac():
