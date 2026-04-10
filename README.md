@@ -56,3 +56,16 @@ Study how to use cryptographic algorithms with Python
     * [Python 以 PyCryptodome 實作 RSA 非對稱式加密方法教學與範例](https://officeguide.cc/python-pycryptodome-rsa-asymmetric-encryption-tutorial-examples/)
       * 讀寫 file
     * [PKCS#1 v1.5 encryption (RSA)](https://pycryptodome.readthedocs.io/en/latest/src/cipher/pkcs1_v1_5.html)
+---
+# venv
+* 建立虛擬環境
+  * python3 -m venv venv
+* 啟動
+  * source venv/bin/activate
+  * deactivate (exit)
+* 安裝套件
+  * pip install pycryptodome
+  * pip install cryptography
+* 驗證
+  * python -c "from Crypto.Cipher import AES; print('OK')"
+  * python -c "from cryptography.hazmat.primitives.keywrap import aes_key_wrap; print('OK')"
