@@ -189,11 +189,7 @@ def aes_ccm_get_vect(vect_no):
             ct_b = unhexlify("ca482c674b599046cc7d7ee0d00eec1e")
 
         case _:
-            key_b = none
-            nonce_b = none
-            aad_b = none
-            payload_b = none
-            ct_b = none
+            (key_b, nonce_b, aad_b, payload_b, ct_b) = (None, None, None, None, None)
 
     return (key_b, nonce_b, aad_b, payload_b, ct_b)
 
@@ -202,6 +198,9 @@ def ex_aes_ccm_vect(vect_no):
     print("\tvect_no:", vect_no)
 
     (key_b, nonce_b, aad_b, payload_b, ct_b) = aes_ccm_get_vect(vect_no)
+    if key_b is None:
+        print("\t\t[ERROR] invalid vector")
+        return
     print("\t\tkey:", key_b.hex())
     print("\t\tnonce:", nonce_b.hex())
     print("\t\taad:", aad_b.hex())
